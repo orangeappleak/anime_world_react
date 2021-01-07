@@ -17,20 +17,21 @@ function App() {
   ),[])
   
   return (
-    <div className="App">
-      <h1>Top Trending Anime right now.</h1>
-      {
-        isLoading ? <h1>Pls wait you impatient dog</h1>
-        : trendingAnimeData.map((el,index) => (
-          <div id="anime_info" key={index}>
-            <h1> Name: {el.attributes.slug}</h1>
-            <p>Synopsis: {el.attributes.synopsis}</p>
-          </div>
-        ))
-      
-      }
+    <div className="App" id="trending_anime">
+      <h1 id="trending_heading">Top Trending Anime right now.</h1>
+      <div id="trending_grid">
+        {
+          trendingAnimeData.map((el,index) => (
+            <div id="anime_info" key={index}>
+              <h1>{el.attributes.slug}</h1>
+              <img src={el.attributes.posterImage.medium} />
+              <h2>Popularity-Rank : {el.attributes.popularityRank}</h2>
+              <h2>Average-Rating : {el.attributes.averageRating}</h2>
+            </div>
+          ))
+        }
+      </div>
     </div>
-  );
-}
+  );}
 
 export default App;

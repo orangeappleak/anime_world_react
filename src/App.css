@@ -2,13 +2,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
-.App {
+#trending_heading{
+  color: coral;
+  font-size: 80px;
+  font-family: 'Staatliches',sans-serif;
+  margin: 20px 0px 100px 0px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#trending_grid{
+  display: grid;
+  grid-template-columns: 20% 20% 20%;
+  column-gap: 50px;
+  row-gap: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+#anime_info{
+  display: flex;
+  flex-direction: column;
+}
+
+#anime_info h1{
+  font-size: 32px;
+  font-family: 'Staatliches',sans-serif;
+  text-align: center;
+}
+
+#anime_info h2{
+  margin: 0;
+  text-align: center;
 }
 
 #anime_list{
