@@ -7,10 +7,10 @@ function App() {
   const [isLoading,load] = useState(true)
 
   useEffect(() => (
-    fetch('https://kitsu.io/api/edge/trending/anime/')
+    fetch('https://kitsu.io/api/edge/trending/anime/?sort=slug/?page[limit]=20&page[offset]=0')
     .then(response => response.json())
       .then(D => (
-        updateTrendingAnimeData(Object.values(D)[0]),
+        updateTrendingAnimeData(Object.values(D)[0].sort((a,b) => a.attributes.popularityRank - b.attributes.popularityRank)),
         load(false)
         )
       )

@@ -7,7 +7,7 @@ export default function AnimeList(){
 
     const [animeData, updateAnimeData] = useState()
     const [links, updateLinks] = useState([])
-    const [url, updateUrl] = useState('https://kitsu.io/api/edge/anime/?page[limit]=10&page[offset]=0')
+    const [url, updateUrl] = useState('https://kitsu.io/api/edge/anime?sort=slug&page[limit]=10')
     const [isLoading, load] = useState(true)
 
     useEffect(() => (
@@ -20,6 +20,8 @@ export default function AnimeList(){
             ))
     ),[url])
 
+    console.log(animeData)
+
     return(
         <div id="anime_list">
             <h1 id="main_heading">Find anime that suite your interests</h1>
@@ -27,17 +29,28 @@ export default function AnimeList(){
             {isLoading? <h1>Wait you PIECE of shit.</h1>
             : animeData[1].map((el,index) => (
                 <div key={index} id='animeData'>
-                    <h1><span style={{color: 'coral'}}>{el.id }{' --> '}</span>  {el.attributes.slug.toString().toUpperCase()} </h1>
+                    <h1> {el.attributes.slug.toString().toUpperCase()} </h1>
                     <div id="flexing_row">
-                        {checkThumbnail(el.attributes.posterImage) ? <h2>NO IMAGE FOUND FOR THIS ANIME</h2> : 
+                        {checkDataNull(el.attributes.posterImage) ? <h2>NO IMAGE FOUND FOR THIS ANIME</h2> : 
                         <div id="cover_image">
                             <img src={el.attributes.posterImage.small}></img>
                         </div>
                         
                         }
                         <div id="flexing_col">
-                            <p>Description: {el.attributes.synopsis} </p>
+                            <p><span style={{color: 'white',fontWeight: 'bold',opacity: 1}}>Description:</span> {checkDataNull(el.attributes.synopsis) ? 'No Description to show' : el.attributes.synopsis }</p>
                             <div id="read_more_button"> <h2>READ MORE</h2></div>
+                        </div>
+
+                        <div id="anime_ratings">
+                            <h1>Ratings & Reviews</h1>
+                            <div id="reviewsAratings">
+                                <p><span style={{opacity: 1,color: 'white'}}>Age Rating: </span> {el.attributes.ageRating}</p>
+                                {checkDataNull(el.attributes.ageRatingGuide) ? <p><span style={{opacity: 1,color: 'white'}}>Age Rating Guide: </span>NULL</p> : <p><span style={{opacity: 1,color: 'white'}}>Age Rating Guide: </span>{el.attributes.ageRatingGuide}</p>}
+                                {checkDataNull(el.attributes.averageRating) ? <p><span style={{opacity: 1,color: 'white'}}>Average Rating: </span>NULL</p> : <p><span style={{opacity: 1,color: 'white'}}>Average Rating: </span> {el.attributes.averageRating}</p>}
+                                <p><span style={{opacity: 1,color: 'white'}}>Popularity Rank: </span>{el.attributes.popularityRank}</p>
+                                {checkDataNull(el.attributes.ratingRank) ? <p><span style={{opacity: 1,color: 'white'}}>Rating Rank: </span> NULL</p> : <p><span style={{opacity: 1,color: 'white'}}>Rating Rank: </span> {el.attributes.ratingRank}</p>}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +65,9 @@ export default function AnimeList(){
     )
 }
 
-function checkThumbnail(image){
-    if(image != null) return false;
+
+function checkDataNull(data){
+    if(data == null) return true
+    if(data!='' || data != "") return false;
     else return true;
 }

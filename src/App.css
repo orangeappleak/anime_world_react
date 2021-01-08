@@ -50,6 +50,10 @@
   font-family: 'Staatliches',sans-serif;
 }
 
+#animeData{
+  margin: 50px 0px 100px 0px;
+}
+
 #animeData h1{
   color: white;
   font-family: 'Staatliches',sans-serif;
@@ -68,14 +72,32 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: stretch;
+  max-height: fit-content;
+}
+
+#cover_image{
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 #flexing_col{
-  margin: 30px;
+  padding: 50px;
+  flex: 3;
+  margin: 0px 30px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#flexing_col p{
+  margin: 0;
 }
 
 #flexing_col #read_more_button{
+  padding: 20px 40px 20px 40px;
+  margin-top: 20px;
   width: 15%;
   border: 3px solid white;
   text-align: center;
@@ -91,6 +113,22 @@
 
 #read_more_button h2{
   color: coral;
+  margin: 0;
+}
+
+#anime_ratings{
+  border: 5px double coral;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#anime_ratings p{
+  font-family: 'Staatliches',sans-serif;
+  text-align: center;
 }
 
 #page_links{
