@@ -7,7 +7,7 @@ import AnimeList from './animeList'
 ReactDOM.render(
   <div>
     <App />
-    <AnimeList />
+    <AnimeList/>
   </div>,
   document.getElementById('root')
 );

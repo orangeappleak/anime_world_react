@@ -74,6 +74,29 @@
   justify-content: center;
   align-items: stretch;
   max-height: fit-content;
+  box-shadow: 0px 0px 0px 0px rgb(82, 82, 82);
+  transition: transform 0.3s ease-in-out,box-shadow 0.4s ease-in-out;
+}
+
+#flexing_row h1{
+  pointer-events: none;
+}
+
+#overlay_sheet{
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  background-color: coral;
+  transition: height 0.6s ease-in-out;
+}
+
+#overlay_sheet.open_overlay{
+  height: 50%;
+}
+
+#flexing_row.open{
+  transform: scale(1.02);
+  box-shadow: 0px 20px 10px -20px rgb(255, 0, 0);
 }
 
 #cover_image{
@@ -103,17 +126,19 @@
   text-align: center;
   box-shadow: 0px 0px 0px 0px rgb(97, 97, 97);
   transform: scale(0.97);
-  transition: box-shadow 1s cubic-bezier(.76,.01,.22,.86),transform 0.5s cubic-bezier(.76,.01,.22,.86);
+  z-index: 1;
+  transition: box-shadow 0.5s cubic-bezier(.76,.01,.22,.86),transform 0.5s cubic-bezier(.76,.01,.22,.86);
 }
 
 #flexing_col #read_more_button:hover{
   transform: scale(1);
-  box-shadow: 0px 5px 5px 7px rgba(60, 60, 60, 0.544);
+  box-shadow: 0px 30px 10px -20px rgba(60, 60, 60, 0.544);
 }
 
 #read_more_button h2{
-  color: coral;
+  color: red;
   margin: 0;
+  pointer-events: none;
 }
 
 #anime_ratings{
@@ -239,3 +264,58 @@
     transform: rotate(360deg);
   }
 }
+
+/* loader animation*/
+/* body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+}
+
+.loading {
+  $colors: #7ef9ff, #89cff0, #4682b4, #0f52ba, #000080;
+  display: flex;
+
+  .dot {
+    position: relative;
+    width: 2em;
+    height: 2em;
+    margin: 0.8em;
+    border-radius: 50%;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      border-radius: inherit;
+      animation: wave 2s ease-out infinite;
+    }
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        background: nth($colors, $i);
+
+        &::before {
+          animation-delay: $i * 0.2s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes wave {
+  50%,
+  75% {
+    transform: scale(2.5);
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+ */

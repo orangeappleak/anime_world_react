@@ -1,8 +1,9 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react';
+
 import './App.css';
 
 function App() {
-  
+
   const [trendingAnimeData,updateTrendingAnimeData] = useState([])
   const [isLoading,load] = useState(true)
 
@@ -20,11 +21,13 @@ function App() {
     <div className="App" id="trending_anime">
       <h1 id="trending_heading">Top Trending Anime right now.</h1>
       <div id="trending_grid">
-        {
+        {isLoading? <h1>Pls Wait while we fetch info.</h1> :
           trendingAnimeData.map((el,index) => (
             <div id="anime_info" key={index}>
               <h1>{el.attributes.slug}</h1>
-              <img src={el.attributes.posterImage.medium} />
+              <div id="thumbnail">
+                <img alt="cannot display image" src={el.attributes.posterImage.medium} />
+              </div>
               <h2>Popularity-Rank : {el.attributes.popularityRank}</h2>
               <h2>Average-Rating : {el.attributes.averageRating}</h2>
             </div>
