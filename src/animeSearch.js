@@ -21,7 +21,8 @@ export default function AnimeSearch({ update, load ,home,loadString}){
                     if(isEmpty()){
                         load(true)
                         loadString("Alright, Alright taking you back, just hold your horses DUMBASS")
-                        setTimeout(() => {home();load(false)},2000)
+                        home()
+                        setTimeout(() => {load(false)},2000)
                     }
                     else{
                         home();

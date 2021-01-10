@@ -12,6 +12,24 @@ export default function AnimeList(){
     const [isLoading, load] = useState(true)
     const [loadString, updateLoadString] = useState('Wait you peice of shit')
 
+
+    const check_next_link = () => {
+
+        try{
+            if(('next' in links[1])) return true
+            else return false
+        }
+        catch(err){console.log("shit is undefined")}
+    }
+    
+    const check_prev_link = () => {
+        try{
+            if(('prev' in links[1])) return true
+            else return false
+        }
+        catch(err){console.log("shit is undefined")}
+    }
+
     useEffect(() => (
         fetch(url)
         .then(response => response.json())
@@ -19,8 +37,9 @@ export default function AnimeList(){
                 updateAnimeData(Object.entries(D)[0]),
                 updateLinks(Object.entries(D)[2]),
                 load(false)
-            ))
-    ),[url])
+                ))
+                ),[url])
+
 
     return(
         <div id="anime_list">
@@ -42,7 +61,7 @@ export default function AnimeList(){
                         <div id="overlay_sheet"></div>
                         {checkDataNull(el.attributes.posterImage) ? <h2>NO IMAGE FOUND FOR THIS ANIME</h2> : 
                         <div id="cover_image">
-                            <img alt="Cannot show the image" src={el.attributes.posterImage.small}></img>
+                            <img src={el.attributes.posterImage.small}></img>
                         </div>
                         
                         }
@@ -66,11 +85,17 @@ export default function AnimeList(){
             ))
             }
             <div id="page_links">
-                <div id="prev_page"><h1 onClick = {() => (load(true),updateUrl(links[1].prev))}>{'<<<<<'}</h1></div>
+                <div id="prev_page">{
+                    check_prev_link() ? <h1 onClick ={() => (load(true),updateUrl(links[1].next))}>PREV</h1> : <h1></h1>
+                }
+                </div>
                 <div id="start_page"><h1 onClick = {() => (load(true),updateUrl(links[1].first))}>Go back to start</h1></div>
-                <div id="next_page"><h1 onClick={()=> (load(true),updateUrl(links[1].next))}>{'>>>>>'}</h1></div>
+                <div id="next_page">{
+                    check_next_link() ? <h1 onClick ={() => (load(true),updateUrl(links[1].next))}>NEXT</h1> : <h1></h1>
+                }
+                </div>
             </div>
-        </div>
+        </div> 
     )
 }
 
@@ -89,7 +114,7 @@ function Trail({children}){
             <div id="loader_dots">
                 {
                     trail.map(({opacity,x},index) => (
-                        <a.h1 key={index} class="dots" style={{opacity: opacity.interpolate((o) => `${o}`),transform: x.interpolate((x) => `translate(0,${x}%)`)}}>{items[index]}</a.h1>
+                        <a.h1 key={index} className="dots" style={{opacity: opacity.interpolate((o) => `${o}`),transform: x.interpolate((x) => `translate(0,${x}%)`)}}>{items[index]}</a.h1>
                     ))
                 }
             </div>
