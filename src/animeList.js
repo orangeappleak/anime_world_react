@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import Categories from './categories'
 import AnimeSearch from './animeSearch';
+import {useTrail,a} from 'react-spring';
 
 
 export default function AnimeList(){
@@ -24,11 +25,16 @@ export default function AnimeList(){
     return(
         <div id="anime_list">
             <h1 id="main_heading">Find anime that suite your interests</h1>
-            <AnimeSearch home={() => updateUrl('https://kitsu.io/api/edge/anime?sort=slug&page[limit]=10')} load = {searching => ((load(searching),updateLoadString('Cant you be patient for a while, idiot wait let me search!')))} update = {search_url => (
-                updateUrl(`https://kitsu.io/api/edge/anime?filter[text]=${search_url.replaceAll(" ","%20")}`)
-            )}/>
+            <AnimeSearch 
+                home={() => updateUrl('https://kitsu.io/api/edge/anime?sort=slug&page[limit]=10')}
+                load = {searching => ((load(searching),updateLoadString('Cant you be patient for a while, idiot wait let me search!')))} 
+                loadString = {(str) => (updateLoadString(str))}
+                update = {search_url => (
+                    updateUrl(`https://kitsu.io/api/edge/anime?filter[text]=${search_url.replaceAll(" ","%20")}`
+                ))}
+            />
             <Categories />
-            {isLoading? <h1>{loadString}</h1>
+            {isLoading? <Loader loadString = {loadString}/>
             : animeData[1].map((el,index) => (
                 <div key={index} id='animeData'>
                     <h1> {el.attributes.slug.toString().toUpperCase()} </h1>
@@ -65,6 +71,43 @@ export default function AnimeList(){
                 <div id="next_page"><h1 onClick={()=> (load(true),updateUrl(links[1].next))}>{'>>>>>'}</h1></div>
             </div>
         </div>
+    )
+}
+
+function Trail({children}){
+    const [resetOrbit, setResetOrbit] = useState(false);
+    let items = React.Children.toArray(children)
+    const trail = useTrail(items.length,{
+        opacity: 1,
+        x: 0,
+        from: {opacity: 0,x: 100},
+        onRest: () => setResetOrbit(state => !state),
+        reset: resetOrbit
+    })
+
+    return(
+            <div id="loader_dots">
+                {
+                    trail.map(({opacity,x},index) => (
+                        <a.h1 key={index} class="dots" style={{opacity: opacity.interpolate((o) => `${o}`),transform: x.interpolate((x) => `translate(0,${x}%)`)}}>{items[index]}</a.h1>
+                    ))
+                }
+            </div>
+
+    )
+}
+
+function Loader({loadString}){
+    return(
+        <div id="loader">
+            <h1 id="loadString">{loadString}</h1>
+            <Trail>
+               <span></span>
+               <span></span>
+               <span></span>
+            </Trail>
+        </div>
+
     )
 }
 
