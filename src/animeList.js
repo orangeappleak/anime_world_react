@@ -63,13 +63,7 @@ export default function AnimeList(){
                         <div id="cover_image">
                             <img src={el.attributes.posterImage.small}></img>
                         </div>
-                        
                         }
-                        <div id="flexing_col">
-                            <p><span style={{color: 'white',fontWeight: 'bold',opacity: 1}}>Description:</span> {checkDataNull(el.attributes.synopsis) ? 'No Description to show' : el.attributes.synopsis }</p>
-                            <div id="read_more_button" onClick = {(el) => handleReadMoreClick(el)}> <h2>READ MORE</h2></div>
-                        </div>
-
                         <div id="anime_ratings">
                             <h1>Ratings & Reviews</h1>
                             <div id="reviewsAratings">
@@ -80,6 +74,12 @@ export default function AnimeList(){
                                 {checkDataNull(el.attributes.ratingRank) ? <p><span style={{opacity: 1,color: 'white'}}>Rating Rank: </span> NULL</p> : <p><span style={{opacity: 1,color: 'white'}}>Rating Rank: </span> {el.attributes.ratingRank}</p>}
                             </div>
                         </div>
+                        <div id="flexing_col">
+                            <p><span style={{color: 'white',fontWeight: 'bold',opacity: 1}}>Description:</span> {checkDataNull(el.attributes.synopsis) ? 'No Description to show' : el.attributes.synopsis }</p>
+                            <div id="read_more_button" onClick = {(el) => handleReadMoreClick(el)}> <h2>READ MORE</h2></div>
+                        </div>
+
+                        
                     </div>
                 </div>
             ))
