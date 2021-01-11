@@ -21,7 +21,7 @@ function App() {
     <div className="App" id="trending_anime">
       <h1 id="trending_heading">Top Trending Anime right now.</h1>
       <div id="trending_grid">
-        {isLoading? <h1>Pls Wait while we fetch info.</h1> :
+        {isLoading? <h1 style={{textAlign: 'center'}}>Pls Wait while we fetch info.</h1> :
           trendingAnimeData.map((el,index) => (
             <div id="anime_info" key={index}>
               <h1>{el.attributes.slug}</h1>

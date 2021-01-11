@@ -2,6 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
+
+*{
+  margin: 0;
+}
+
+
 #trending_heading{
   color: coral;
   font-size: 80px;
@@ -236,6 +242,8 @@
 }
 
 #loadString{
+  letter-spacing: 2px;
+  text-align: center;
   font-size: 40px;
   color: white;
   font-family: 'Anton';
@@ -253,6 +261,24 @@
   background-color: #0096D1;
   margin: 10px;
   border-radius: 100px;
+}
+
+#footer{
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  color: white;
+}
+
+#footer h3{
+  margin-bottom: 3px;
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -364,5 +390,27 @@
   #flexing_col #read_more_button{
     width: 50%;
     padding: 10px;
+  }
+
+  #page_links{
+    align-items: center;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  #next_page h1,#prev_page h1{
+    font-size: 30px;
+  }
+
+  #footer h3{
+    font-size: 12px;
+  }
+
+  #next_page{
+    margin-left: 10px;
+  }
+  
+  #prev_page{
+    margin-right: 10px;
   }
 }

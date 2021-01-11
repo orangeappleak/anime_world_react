@@ -19,7 +19,7 @@ export default function AnimeList(){
             if(('next' in links[1])) return true
             else return false
         }
-        catch(err){console.log("shit is undefined")}
+        catch(err){}
     }
     
     const check_prev_link = () => {
@@ -86,12 +86,12 @@ export default function AnimeList(){
             }
             <div id="page_links">
                 <div id="prev_page">{
-                    check_prev_link() ? <h1 onClick ={() => {load(true);updateUrl(links[1].next)}}>PREV</h1> : <h1 style={{pointerEvents: 'none'}}>.</h1>
+                    check_prev_link() ? <h1 onClick ={() => {load(true);updateUrl(links[1].next)}}>{'<<'}</h1> : <h1 style={{pointerEvents: 'none'}}>.</h1>
                 }
                 </div>
                 <div id="start_page"><h1 onClick = {() => {load(true);updateUrl(links[1].first)}}>Go back to start</h1></div>
                 <div id="next_page">{
-                    check_next_link() ? <h1 onClick ={() => {load(true);updateUrl(links[1].next)}}>NEXT</h1> : <h1 style={{pointerEvents: 'none'}}>.</h1>
+                    check_next_link() ? <h1 onClick ={() => {load(true);updateUrl(links[1].next)}}>{'>>'}</h1> : <h1 style={{pointerEvents: 'none'}}>.</h1>
                 }
                 </div>
             </div>
