@@ -10,10 +10,10 @@ function App() {
   useEffect(() => (
     fetch('https://kitsu.io/api/edge/trending/anime/?sort=slug/?page[limit]=20&page[offset]=0')
     .then(response => response.json())
-      .then(D => (
-        updateTrendingAnimeData(Object.values(D)[0].sort((a,b) => a.attributes.popularityRank - b.attributes.popularityRank)),
+      .then(D => {
+        updateTrendingAnimeData(Object.values(D)[0].sort((a,b) => a.attributes.popularityRank - b.attributes.popularityRank));
         load(false)
-        )
+      }
       )
   ),[])
   
@@ -26,7 +26,7 @@ function App() {
             <div id="anime_info" key={index}>
               <h1>{el.attributes.slug}</h1>
               <div id="thumbnail">
-                <img alt="cannot display image" src={el.attributes.posterImage.medium} />
+                <img alt="" src={el.attributes.posterImage.medium} />
               </div>
               <h2>Popularity-Rank : {el.attributes.popularityRank}</h2>
               <h2>Average-Rating : {el.attributes.averageRating}</h2>

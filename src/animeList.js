@@ -30,14 +30,14 @@ export default function AnimeList(){
         catch(err){console.log("shit is undefined")}
     }
 
-    useEffect(() => (
+    useEffect(() => 
         fetch(url)
         .then(response => response.json())
-            .then(D => (
-                updateAnimeData(Object.entries(D)[0]),
-                updateLinks(Object.entries(D)[2]),
-                load(false)
-                ))
+            .then(D => {
+                updateAnimeData(Object.entries(D)[0]);
+                updateLinks(Object.entries(D)[2]);
+                load(false);
+                }
                 ),[url])
 
 
@@ -61,7 +61,7 @@ export default function AnimeList(){
                         <div id="overlay_sheet"></div>
                         {checkDataNull(el.attributes.posterImage) ? <h2>NO IMAGE FOUND FOR THIS ANIME</h2> : 
                         <div id="cover_image">
-                            <img src={el.attributes.posterImage.small}></img>
+                            <img alt="" src={el.attributes.posterImage.small}></img>
                         </div>
                         }
                         <div id="anime_ratings">
@@ -86,12 +86,12 @@ export default function AnimeList(){
             }
             <div id="page_links">
                 <div id="prev_page">{
-                    check_prev_link() ? <h1 onClick ={() => (load(true),updateUrl(links[1].next))}>PREV</h1> : <h1></h1>
+                    check_prev_link() ? <h1 onClick ={() => {load(true);updateUrl(links[1].next)}}>PREV</h1> : <h1 style={{pointerEvents: 'none'}}>.</h1>
                 }
                 </div>
-                <div id="start_page"><h1 onClick = {() => (load(true),updateUrl(links[1].first))}>Go back to start</h1></div>
+                <div id="start_page"><h1 onClick = {() => {load(true);updateUrl(links[1].first)}}>Go back to start</h1></div>
                 <div id="next_page">{
-                    check_next_link() ? <h1 onClick ={() => (load(true),updateUrl(links[1].next))}>NEXT</h1> : <h1></h1>
+                    check_next_link() ? <h1 onClick ={() => {load(true);updateUrl(links[1].next)}}>NEXT</h1> : <h1 style={{pointerEvents: 'none'}}>.</h1>
                 }
                 </div>
             </div>
