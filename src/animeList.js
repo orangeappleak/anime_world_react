@@ -143,6 +143,6 @@ function checkDataNull(data){
     else return true;
 }
 
-function handleReadMoreClick(element){
-    element.nativeEvent.path[2].childNodes[0].classList.toggle('open_overlay');
-}
+// function handleReadMoreClick(element){
+//     element.nativeEvent.path[2].childNodes[0].classList.toggle('open_overlay');
+// }
