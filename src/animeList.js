@@ -43,7 +43,7 @@ export default function AnimeList(){
 
     return(
         <div id="anime_list">
-            <h1 id="main_heading">Find anime that suite your interests</h1>
+            <h1 id="main_heading">Find anime that suit your interests</h1>
             <AnimeSearch 
                 home={() => updateUrl('https://kitsu.io/api/edge/anime?sort=slug&page[limit]=10')}
                 load = {searching => ((load(searching),updateLoadString('Cant you be patient for a while, idiot wait let me search!')))} 
@@ -76,7 +76,7 @@ export default function AnimeList(){
                         </div>
                         <div id="flexing_col">
                             <p><span style={{color: 'white',fontWeight: 'bold',opacity: 1}}>Description:</span> {checkDataNull(el.attributes.synopsis) ? 'No Description to show' : el.attributes.synopsis }</p>
-                            <div id="read_more_button" onClick = {(el) => handleReadMoreClick(el)}> <h2>READ MORE</h2></div>
+                            <div id="read_more_button"> <h2>READ MORE</h2></div>
                         </div>
 
                         
